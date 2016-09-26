@@ -1,0 +1,67 @@
+{
+    "title": "Material Theme",
+    "type": "object",
+    "definitions": {
+        "colors": {
+            "type": "object",
+            "properties": {
+                "50": {
+                    "type": "string"
+                },
+                "100": {
+                    "type": "string"
+                },
+                "200": {
+                    "type": "string"
+                },
+                "300": {
+                    "type": "string"
+                },
+                "400": {
+                    "type": "string"
+                },
+                "500": {
+                    "type": "string"
+                },
+                "600": {
+                    "type": "string"
+                },
+                "700": {
+                    "type": "string"
+                },
+                "800": {
+                    "type": "string"
+                },
+                "900": {
+                    "type": "string"
+                },
+                "A100": {
+                    "type": "string"
+                },
+                "A200": {
+                    "type": "string"
+                },
+                "A400": {
+                    "type": "string"
+                },
+                "A700": {
+                    "type": "string"
+                }
+            },
+            "required": ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "A100", "A200", "A400", "A700"]
+        }
+    },
+    "properties": {
+        "primary": {
+            "$ref": "#/definitions/colors"
+        },
+        "secondary": {
+            "$ref": "#/definitions/colors"
+        }
+    },
+    "patternProperties": {
+        "[a-zA-z0-9]+": {
+            "$ref": "#/definitions/colors"
+        }
+    }
+}

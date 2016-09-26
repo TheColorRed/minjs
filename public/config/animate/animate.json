@@ -1,0 +1,8 @@
+{
+    "animations": [
+        {
+            "target": "cat",
+            "trigger": "cat"
+        }
+    ]
+}

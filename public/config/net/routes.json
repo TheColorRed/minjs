@@ -1,0 +1,25 @@
+{
+    "target": "my-app",
+    "routes": [
+        {
+            "path": "/",
+            "name": "root",
+            "view": "tpl/home.html"
+        },
+        {
+            "path": "/called",
+            "name": "called",
+            "view": "tpl/called.html"
+        },
+        {
+            "path": "/home",
+            "name": "home",
+            "call": "called",
+            "view": "tpl/home.html"
+        },
+        {
+            "path": "/api/get/{item}",
+            "name": "getItem"
+        }
+    ]
+}

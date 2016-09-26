@@ -1,0 +1,30 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "**/min.json"
+            ],
+            "url": "./src/json.schemas/config.schema.json"
+        },
+        {
+            "fileMatch": [
+                "config/net/routes.json"
+            ],
+            "url": "./src/json.schemas/net.routes.schema.json"
+        },
+        {
+            "fileMatch": [
+                "config/themes/material.json"
+            ],
+            "url": "./src/json.schemas/themes.material.schema.json"
+        },
+        {
+            "fileMatch": [
+                "config/animate/*.json"
+            ],
+            "url": "./src/json.schemas/animations.schema.json"
+        }
+    ],
+    "typescript.tsdk": "./node_modules/typescript/lib"
+}

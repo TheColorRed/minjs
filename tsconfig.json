@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "system",
+        "removeComments": true,
+        "out": "./public/dist/min.js",
+        "watch": true,
+        "declaration": true
+    },
+    "files": [
+        "src/Util/Config.ts",
+        "src/Net/Http.ts",
+        "src/Net/Route.ts",
+        "src/Themes/Themes.ts",
+        "src/main.ts"
+    ]
+}

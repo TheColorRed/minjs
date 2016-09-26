@@ -1,0 +1,55 @@
+{
+    "title": "Framework Routes",
+    "type": "object",
+    "properties": {
+        "target": {
+            "type": "string",
+            "description": "The target location on the page (javascript selector. Example: '.my-view-1')"
+        },
+        "routes": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "call": {
+                        "type": "string",
+                        "description": "Calls a named route"
+                    },
+                    "ctrl": {
+                        "type": "string",
+                        "description": "The controller to handle this route"
+                    },
+                    "bind": {
+                        "type": "string",
+                        "description": "The location of the data to bind to"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The path to use"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The shorthand name of the path"
+                    },
+                    "redirect": {
+                        "type": "string",
+                        "description": "The location to redirect to"
+                    },
+                    "target": {
+                        "type": "string",
+                        "description": "The target location on the page (javascript selector. Example: '.my-view-1')"
+                    },
+                    "view": {
+                        "type": "string",
+                        "description": "The template url to load for this path"
+                    },
+                    "template": {
+                        "type": "string",
+                        "description": "The template url to load for this path"
+                    }
+                },
+                "required": ["path"]
+            }
+        }
+    }
+}

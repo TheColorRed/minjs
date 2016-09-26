@@ -1,0 +1,59 @@
+{
+    "definitions": {
+        "target": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "animations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "trigger": {
+                        "type": "string",
+                        "description": "The value that will trigger this animation. This can either be a built-in JavaScript event or a custom event.",
+                        "oneOf": [
+                            {
+                                "enum": [
+                                    "click", "mouseover", "mouseout", "mouseenter", "mouseleave"
+                                ]
+                            },
+                            {
+                                "pattern": "[a-zA-Z0-9]+"
+                            }
+                        ]
+                    },
+                    "target": {
+                        "$ref": "#/definitions/target",
+                        "description": "The target(s) that trigger the animation. If \"apply\" is not set, the animations are applied to the current item."
+                    },
+                    "apply": {
+                        "$ref": "#/definitions/target",
+                        "description": "The optional target(s) to apply the animation to"
+                    },
+                    "speed": {
+                        "type": "string",
+                        "description": "The speed of the animation."
+                    },
+                    "property": {
+                        "type": "string",
+                        "description": "The property to affect (opacity, height, width, etc.)."
+                    }
+                },
+                "required": ["target", "trigger"]
+            }
+        }
+    }
+}
