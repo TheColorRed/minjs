@@ -148,7 +148,7 @@ class Routes {
                 }
                 found = true;
                 let targetStr = Routes.target(route.target);
-                let target = document.querySelector(targetStr), as = HTMLElement;
+                let target = document.querySelector(targetStr);
                 let bind, view, viewString = '';
                 if (route.redirect) {
                     Routes.goto(route.redirect);

@@ -12,6 +12,16 @@
                     }
                 }
             ]
+        },
+        "actions": {
+            "enum": [
+                "move-to", "move-from",
+                "color-to", "color-from",
+                "background-color-to", "background-color-from",
+                "fade-to", "fade-from",
+                "scale-to", "scale-from",
+                "skew-to", "skew-from"
+            ]
         }
     },
     "type": "object",
@@ -24,7 +34,7 @@
                     "trigger": {
                         "type": "string",
                         "description": "The value that will trigger this animation. This can either be a built-in JavaScript event or a custom event.",
-                        "oneOf": [
+                        "anyOf": [
                             {
                                 "enum": [
                                     "click", "mouseover", "mouseout", "mouseenter", "mouseleave"
@@ -46,6 +56,24 @@
                     "speed": {
                         "type": "string",
                         "description": "The speed of the animation."
+                    },
+                    "action": {
+                        "type": "array",
+                        "description": "The action(s) to be applied to the object(s).",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "$ref": "#/definitions/actions",
+                                    "description": "The action name to be applied to the object(s)."
+                                },
+                                "parameters": {
+                                    "type": "array"
+                                }
+                            },
+                            "required": ["name", "parameters"]
+                        }
                     },
                     "property": {
                         "type": "string",

@@ -2,7 +2,15 @@
     "animations": [
         {
             "target": "cat",
-            "trigger": "cat"
+            "trigger": "click",
+            "action": [
+                {
+                    "name": "move-to",
+                    "parameters": [
+                        "x", 100
+                    ]
+                }
+            ]
         }
     ]
 }

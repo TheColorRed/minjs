@@ -25,6 +25,5 @@
             ],
             "url": "./src/json.schemas/animations.schema.json"
         }
-    ],
-    "typescript.tsdk": "./node_modules/typescript/lib"
+    ]
 }

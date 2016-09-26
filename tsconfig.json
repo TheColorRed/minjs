@@ -3,9 +3,10 @@
         "target": "es6",
         "module": "system",
         "removeComments": true,
-        "out": "./public/dist/min.js",
+        "outFile": "./public/dist/min.js",
         "watch": true,
-        "declaration": true
+        "declaration": true,
+        "listEmittedFiles": true
     },
     "files": [
         "src/Util/Config.ts",

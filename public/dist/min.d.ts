@@ -35,7 +35,7 @@ declare class Routes {
     private static _currentPath;
     private static _configRoutes;
     private static _rootTarget;
-    static all: [{
+    static readonly all: [{
         call: string;
         ctrl: string;
         bind: string;
@@ -46,7 +46,7 @@ declare class Routes {
         template: string;
         redirect: string;
     }];
-    static rootTarget: string;
+    static readonly rootTarget: string;
     static target(obj: any): any;
     static loadRoute(): void;
     static exec(ctrl: string, obj: {
@@ -56,14 +56,14 @@ declare class Routes {
     }): void;
     static call(name: string): void;
     static goto(url: string): void;
-    static currentRoute: RoutePath;
+    static readonly currentRoute: RoutePath;
     private static setCurrentRoute();
     private static setConfigRoutes(routes);
     private static init(content);
 }
 declare class RoutePath {
     private _path;
-    path: string[];
+    readonly path: string[];
     constructor(path?: string);
     static parse(path: string): string[];
 }
