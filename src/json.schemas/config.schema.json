@@ -8,9 +8,26 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The name of the theme to be used"
+                    "description": "The name of the theme to be used."
                 }
             }
+        },
+        "routes": {
+            "type": "string",
+            "description": "The location of the application routes."
+        },
+        "animations": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
         }
     }
 }

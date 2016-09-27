@@ -2,27 +2,19 @@
 {
     "json.schemas": [
         {
-            "fileMatch": [
-                "**/min.json"
-            ],
+            "fileMatch": [ "config/minjs.json" ],
             "url": "./src/json.schemas/config.schema.json"
         },
         {
-            "fileMatch": [
-                "config/net/routes.json"
-            ],
-            "url": "./src/json.schemas/net.routes.schema.json"
+            "fileMatch": [ "config/routes/**.json" ],
+            "url": "./src/json.schemas/routes.schema.json"
         },
         {
-            "fileMatch": [
-                "config/themes/material.json"
-            ],
+            "fileMatch": [ "config/themes/**.json" ],
             "url": "./src/json.schemas/themes.material.schema.json"
         },
         {
-            "fileMatch": [
-                "config/animate/*.json"
-            ],
+            "fileMatch": [ "config/animation/**.json" ],
             "url": "./src/json.schemas/animations.schema.json"
         }
     ]

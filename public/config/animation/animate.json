@@ -1,0 +1,16 @@
+{
+    "animations": [
+        {
+            "target": "cat",
+            "trigger": "click",
+            "action": {
+                "moveTo": {
+                    "x": "123"
+                },
+                "moveFrom": {
+                    "x": "123"
+                }
+            }
+        }
+    ]
+}

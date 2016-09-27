@@ -12,16 +12,6 @@
                     }
                 }
             ]
-        },
-        "actions": {
-            "enum": [
-                "move-to", "move-from",
-                "color-to", "color-from",
-                "background-color-to", "background-color-from",
-                "fade-to", "fade-from",
-                "scale-to", "scale-from",
-                "skew-to", "skew-from"
-            ]
         }
     },
     "type": "object",
@@ -58,22 +48,370 @@
                         "description": "The speed of the animation."
                     },
                     "action": {
-                        "type": "array",
-                        "description": "The action(s) to be applied to the object(s).",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string",
-                                    "$ref": "#/definitions/actions",
-                                    "description": "The action name to be applied to the object(s)."
-                                },
-                                "parameters": {
-                                    "type": "array"
+                        "type": "object",
+                        "description": "The actions(s) to be applied to the object(s)",
+                        "properties": {
+                            "moveTo": {
+                                "type": "object",
+                                "description": "Moves the item from its current position to the defined position.",
+                                "properties": {
+                                    "x": {
+                                        "type": ["string","number"],
+                                        "description": "The horizontal position."
+                                    },
+                                    "y": {
+                                        "type": ["string","number"],
+                                        "description": "The vertical position."
+                                    }
                                 }
                             },
-                            "required": ["name", "parameters"]
-                        }
+                            "moveFrom": {
+                                "type": "object",
+                                "description": "Moves the item from the defined position to its current position.",
+                                "properties": {
+                                    "x": {
+                                        "type": ["string","number"],
+                                        "description": "The horizontal position."
+                                    },
+                                    "y": {
+                                        "type": ["string","number"],
+                                        "description": "The vertical position."
+                                    }
+                                }
+                            },
+                            "scaleTo": {
+                                "type": "object",
+                                "description": "Scales the item from its current size to the defined size.",
+                                "properties": {
+                                    "sx": {
+                                        "type": ["string","number"],
+                                        "description": "The horizontal scale."
+                                    },
+                                    "sy": {
+                                        "type": ["string","number"],
+                                        "description": "The vertical scale."
+                                    }
+                                }
+                            },
+                            "scaleFrom": {
+                                "type": "object",
+                                "description": "Scales the item from the defined size to its current size.",
+                                "properties": {
+                                    "sx": {
+                                        "type": ["string","number"],
+                                        "description": "The horizontal scale."
+                                    },
+                                    "sy": {
+                                        "type": ["string","number"],
+                                        "description": "The vertical scale."
+                                    }
+                                }
+                            },
+                            "rotateTo": {
+                                "type": "object",
+                                "description": "Rotates the item from its current angle to the defined angle.",
+                                "properties": {
+                                    "angle": {
+                                        "type": ["string","number"],
+                                        "description": "The angle in which to rotate."
+                                    }
+                                }
+                            },
+                            "rotateFrom": {
+                                "type": "object",
+                                "description": "Rotates the item from the defined angle to its current angle.",
+                                "properties": {
+                                    "angle": {
+                                        "type": ["string","number"],
+                                        "description": "The angle in which to rotate."
+                                    }
+                                }
+                            },
+                            "skewTo": {
+                                "type": "object",
+                                "description": "Skews the item from its current skew to the defined skew.",
+                                "properties": {
+                                    "ax": {
+                                        "type": ["string","number"],
+                                        "description": "The horizontal scale."
+                                    },
+                                    "ay": {
+                                        "type": ["string","number"],
+                                        "description": "The vertical scale."
+                                    }
+                                }
+                            },
+                            "skewFrom": {
+                                "type": "object",
+                                "description": "Skews the item from the defined skew to its current skew.",
+                                "properties": {
+                                    "ax": {
+                                        "type": ["string","number"],
+                                        "description": "The horizontal position."
+                                    },
+                                    "ay": {
+                                        "type": ["string","number"],
+                                        "description": "The vertical position."
+                                    }
+                                }
+                            },
+                            "fgColorTo": {
+                                "type": "object",
+                                "description": "Fades the foreground color from its current color to the defined color.",
+                                "properties": {
+                                    "color": {
+                                        "type": "string",
+                                        "description": "The foreground color to fade to."
+                                    }
+                                }
+                            },
+                            "fgColorFrom": {
+                                "type": "object",
+                                "description": "Fades the foreground color from the defined color to its current color.",
+                                "properties": {
+                                    "color": {
+                                        "type": "string",
+                                        "description": "The foreground color to fade to."
+                                    }
+                                }
+                            },
+                            "bgColorTo": {
+                                "type": "object",
+                                "description": "Fades the background color from the defined color to its current color.",
+                                "properties": {
+                                    "color": {
+                                        "type": "string",
+                                        "description": "The background color to fade to."
+                                    }
+                                }
+                            },
+                            "bgColorFrom": {
+                                "type": "object",
+                                "description": "Fades the background color from the defined color to its current color.",
+                                "properties": {
+                                    "color": {
+                                        "type": "string",
+                                        "description": "The background color to fade to."
+                                    }
+                                }
+                            },
+                            "fadeTo": {
+                                "type": "object",
+                                "description": "Fades the item's opacity from its current value to the defined value.",
+                                "properties": {
+                                    "amount": {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "maximum": 1,
+                                        "description": "The opacity of the value."
+                                    }
+                                }
+                            },
+                            "fadeFrom": {
+                                "type": "object",
+                                "description": "Fades the item's opacity from the defined value to its current value.",
+                                "properties": {
+                                    "amount": {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "maximum": 1,
+                                        "description": "The opacity of the value."
+                                    }
+                                }
+                            }
+                        },
+                        "anyOf": [
+                            {
+                                "oneOf": [
+                                    {"required": ["moveTo"]},
+                                    {"required": ["moveFrom"]}
+                                ]
+                            },
+                            {
+                                "oneOf": [
+                                    {"required": ["scaleTo"]},
+                                    {"required": ["scaleFrom"]}
+                                ]
+                            },
+                            {
+                                "oneOf": [
+                                    {"required": ["rotateTo"]},
+                                    {"required": ["rotateFrom"]}
+                                ]
+                            },
+                            {
+                                "oneOf": [
+                                    {"required": ["skewTo"]},
+                                    {"required": ["skewFrom"]}
+                                ]
+                            },
+                            {
+                                "oneOf": [
+                                    {"required": ["fgColorTo"]},
+                                    {"required": ["fgColorFrom"]}
+                                ]
+                            },
+                            {
+                                "oneOf": [
+                                    {"required": ["bgColorTo"]},
+                                    {"required": ["bgColorFrom"]}
+                                ]
+                            },
+                            {
+                                "oneOf": [
+                                    {"required": ["fadeTo"]},
+                                    {"required": ["fadeFrom"]}
+                                ]
+                            }
+                        ]
+                    //     "type": "array",
+                    //     "description": "The action(s) to be applied to the object(s).",
+                    //     "uniqueItems": true,
+                    //     "minItems": 1,
+                    //     "items": {
+                    //         "type": "object",
+                    //         "oneOf": [
+                    //             {
+                    //                 "properties": {
+                    //                     "name": {
+                    //                         "type": "string",
+                    //                         "enum": [
+                    //                             "moveTo", "moveFrom"
+                    //                         ],
+                    //                         "description": "Moves an Object from its current location to a new location"
+                    //                     },
+                    //                     "args": {
+                    //                         "type": "object",
+                    //                         "properties": {
+                    //                             "x": {
+                    //                                 "description": "The horizontal position."
+                    //                             },
+                    //                             "y": {
+                    //                                 "description": "The vertical postion."
+                    //                             }
+                    //                         },
+                    //                         "required": ["x", "y"]
+                    //                     }
+                    //                 }
+                    //             },
+                    //             {
+                    //                 "properties": {
+                    //                     "name": {
+                    //                         "type": "string",
+                    //                         "enum": [
+                    //                             "fgColorTo", "fgColorFrom"
+                    //                         ],
+                    //                         "description": "Fades a color from one color to another."
+                    //                     },
+                    //                     "args": {
+                    //                         "type": "object",
+                    //                         "properties": {
+                    //                             "color": {
+                    //                                 "type": "string",
+                    //                                 "description": "The color to fade into."
+                    //                             }
+                    //                         },
+                    //                         "required": ["color"]
+                    //                     }
+                    //                 }
+                    //             },
+                    //             {
+                    //                 "properties": {
+                    //                     "name": {
+                    //                         "type": "string",
+                    //                         "enum": [
+                    //                             "bgColorTo", "bgColorFrom"
+                    //                         ],
+                    //                         "description": "Fades a background color from one color to another."
+                    //                     },
+                    //                     "args": {
+                    //                         "type": "object",
+                    //                         "properties": {
+                    //                             "color": {
+                    //                                 "type": "string",
+                    //                                 "description": "The color to fade into."
+                    //                             }
+                    //                         },
+                    //                         "required": ["color"]
+                    //                     }
+                    //                 }
+                    //             },
+                    //             {
+                    //                 "properties": {
+                    //                     "name": {
+                    //                         "type": "string",
+                    //                         "enum": [
+                    //                             "fadeTo", "fadeFrom"
+                    //                         ],
+                    //                         "description": "Fades an the opacity of an item in/out."
+                    //                     },
+                    //                     "args": {
+                    //                         "type": "object",
+                    //                         "properties": {
+                    //                             "amount": {
+                    //                                 "type": "number",
+                    //                                 "maximum": 1,
+                    //                                 "minimum": 0,
+                    //                                 "description": "The alpha value between 0 and 1."
+                    //                             }
+                    //                         },
+                    //                         "required": ["amount"]
+                    //                     }
+                    //                 }
+                    //             },
+                    //             {
+                    //                 "properties": {
+                    //                     "name": {
+                    //                         "type": "string",
+                    //                         "enum": [
+                    //                             "scaleTo", "scaleFrom"
+                    //                         ],
+                    //                         "description": "Scales an item up/down."
+                    //                     },
+                    //                     "args": {
+                    //                         "type": "object",
+                    //                         "properties": {
+                    //                             "sx": {
+                    //                                 "type": "number",
+                    //                                 "description": "The x scale of the item."
+                    //                             },
+                    //                             "sy": {
+                    //                                 "type": "number",
+                    //                                 "description": "The y scale of the item."
+                    //                             }
+                    //                         },
+                    //                         "anyOf": [{"required": ["sx"]},{"required": ["sy"]}]
+                    //                     }
+                    //                 }
+                    //             },
+                    //             {
+                    //                 "properties": {
+                    //                     "name": {
+                    //                         "type": "string",
+                    //                         "enum": [
+                    //                             "skewTo", "skewFrom"
+                    //                         ],
+                    //                         "description": "Skew the item."
+                    //                     },
+                    //                     "args": {
+                    //                         "type": "object",
+                    //                         "properties": {
+                    //                             "ax": {
+                    //                                 "type": "number",
+                    //                                 "description": "The x angle for the item's skew."
+                    //                             },
+                    //                             "ay": {
+                    //                                 "type": "number",
+                    //                                 "description": "The y angle for the item's skew."
+                    //                             }
+                    //                         },
+                    //                         "anyOf": [{"required": ["ax"]},{"required": ["ay"]}]
+                    //                     }
+                    //                 }
+                    //             }
+                    //         ],
+                    //         "required": ["name", "args"]
+                    //     }
                     },
                     "property": {
                         "type": "string",

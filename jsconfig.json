@@ -7,6 +7,6 @@
 		"allowSyntheticDefaultImports": true
 	},
 	"files": [
-		"./root/dist/min.d.ts"
+		"./public/dist/min.d.ts"
 	]
 }
