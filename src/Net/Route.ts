@@ -61,7 +61,7 @@ class Routes {
                     obj.target = target;
                 }
                 if (bind || view) {
-                    Http.when(bind, view).done(responses => {
+                    Http.when([bind, view]).done(responses => {
                         let bindResp: HttpResponse = responses[0];
                         let viewResp: HttpResponse = responses[1];
                         if (bindResp) {

@@ -5,7 +5,7 @@ declare function http(url: string): HttpResponse;
 declare class Http {
     private static watchers;
     static request(url: string): HttpResponse;
-    static when(...args: HttpResponse[]): HttpWatch;
+    static when(args: HttpResponse[]): HttpWatch;
     private updateWatchers();
     private httpRequest(url, response);
 }
@@ -25,6 +25,9 @@ declare class HttpResponse {
     private successFunc;
     private completeFunc;
     private errorFunc;
+    private _name;
+    readonly name: string;
+    setName(name: string): HttpResponse;
     success(callback: (response: HttpResponse) => void): HttpResponse;
     complete(callback: (response: HttpResponse) => void): HttpResponse;
     error(callback: (response: HttpResponse) => void): HttpResponse;

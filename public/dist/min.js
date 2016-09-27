@@ -20,7 +20,7 @@ class Http {
         });
         return response;
     }
-    static when(...args) {
+    static when(args) {
         let watch = new HttpWatch;
         watch.items = args;
         Http.watchers.push(watch);
@@ -85,6 +85,16 @@ class HttpResponse {
         this.code = 0;
         this.isDone = false;
         this.isJson = false;
+        this._name = '';
+    }
+    get name() {
+        return this._name;
+    }
+    setName(name) {
+        if (name.length > 0) {
+            this._name = name;
+        }
+        return this;
     }
     success(callback) {
         this.successFunc = callback;
@@ -172,7 +182,7 @@ class Routes {
                     obj.target = target;
                 }
                 if (bind || view) {
-                    Http.when(bind, view).done(responses => {
+                    Http.when([bind, view]).done(responses => {
                         let bindResp = responses[0];
                         let viewResp = responses[1];
                         if (bindResp) {
@@ -279,14 +289,24 @@ class Min {
         });
     }
     loadConfigs(response) {
+        let configs = [];
         let data = response.json();
-        let routesUrl = '/config/net/routes.json';
-        let themeUrl = '/config/themes/' + (data.theme.name || 'material') + '.json';
-        let routes = http(routesUrl);
-        let theme = http(themeUrl);
-        Http.when(routes, theme).done(items => {
-            Routes['init'](items[0].content);
-            Themes['init'](items[1].content);
+        if (data.routes) {
+            configs.push(http('/config/' + data.routes).setName('routes'));
+        }
+        if (data.theme) {
+            configs.push(http('/config/themes/' + (data.theme.name || 'material') + '.json').setName('theme'));
+        }
+        Http.when(configs).done(items => {
+            items.forEach(item => {
+                let name = item.name;
+                if (name == 'routes') {
+                    Routes['init'](item.content);
+                }
+                else if (name == 'theme') {
+                    Themes['init'](item.content);
+                }
+            });
             Routes.loadRoute();
         });
     }

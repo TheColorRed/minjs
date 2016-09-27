@@ -18,7 +18,7 @@ class Http {
         new Http().httpRequest(url, response).then(function (response) {
             if (typeof response['successFunc'] == 'function' && response.code == 200) {
                 response['successFunc'](response);
-            }else if (typeof response['errorFunc'] == 'function' && response.code != 200) {
+            } else if (typeof response['errorFunc'] == 'function' && response.code != 200) {
                 response['errorFunc'](response);
             }
             if (typeof response['completeFunc'] == 'function') {
@@ -28,7 +28,7 @@ class Http {
         return response;
     }
 
-    public static when(...args: HttpResponse[]): HttpWatch {
+    public static when(args: HttpResponse[]): HttpWatch {
         let watch = new HttpWatch;
         watch.items = args;
         Http.watchers.push(watch);
@@ -36,7 +36,7 @@ class Http {
     }
 
     private updateWatchers() {
-        for(var i = Http.watchers.length -1; i >= 0 ; i--){
+        for (var i = Http.watchers.length - 1; i >= 0; i--) {
             let watcher = Http.watchers[i];
             let isDone = watcher['test']();
             if (isDone) {
@@ -108,6 +108,19 @@ class HttpResponse {
     private completeFunc: Function;
     private errorFunc: Function;
 
+    private _name: string = '';
+
+    public get name(): string {
+        return this._name;
+    }
+
+    public setName(name: string): HttpResponse {
+        if (name.length > 0) {
+            this._name = name;
+        }
+        return this;
+    }
+
     public success(callback: (response: HttpResponse) => void): HttpResponse {
         this.successFunc = callback;
         return this;
@@ -128,7 +141,7 @@ class HttpResponse {
             if (typeof this.content == 'string') {
                 return JSON.parse(this.content);
             }
-        } catch (e) {}
+        } catch (e) { }
         return this.content;
     }
 

@@ -24,21 +24,32 @@ class Min {
      * @memberOf Min
      */
     private loadConfigs(response: HttpResponse) {
-        let data = response.json();
-
-        // Get configuration urls
-        let routesUrl = '/config/net/routes.json';
-        let themeUrl = '/config/themes/' + (data.theme.name || 'material') + '.json';
+        let configs: HttpResponse[] = [];
+        let data: {
+            routes?: string,
+            animations?: string,
+            theme?: { name: string }
+        } = response.json();
 
         // Execute the ajax requests
-        let routes = http(routesUrl);
-        let theme = http(themeUrl);
+        if (data.routes) {
+            configs.push(http('/config/' + data.routes).setName('routes'));
+        }
+        if (data.theme) {
+            configs.push(http('/config/themes/' + (data.theme.name || 'material') + '.json').setName('theme'));
+        }
 
         // Once all the configurations are loaded...
-        Http.when(routes, theme).done(items => {
+        Http.when(configs).done(items => {
             // Initialize the configs
-            Routes['init'](items[0].content);
-            Themes['init'](items[1].content);
+            items.forEach(item => {
+                let name = item.name;
+                if (name == 'routes') {
+                    Routes['init'](item.content);
+                } else if (name == 'theme') {
+                    Themes['init'](item.content);
+                }
+            });
 
             // Run extra stuff
             Routes.loadRoute();
