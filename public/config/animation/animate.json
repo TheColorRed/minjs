@@ -1,14 +1,11 @@
 {
     "animations": [
         {
-            "target": "cat",
+            "target": ".animate",
             "trigger": "click",
             "action": {
                 "moveTo": {
-                    "x": "123"
-                },
-                "moveFrom": {
-                    "x": "123"
+                    "x": "123px"
                 }
             }
         }

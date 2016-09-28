@@ -13,6 +13,7 @@
         "src/Net/Http.ts",
         "src/Net/Route.ts",
         "src/Themes/Themes.ts",
+        "src/Animation/Animation.ts",
         "src/main.ts"
     ]
 }

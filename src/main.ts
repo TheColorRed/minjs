@@ -38,6 +38,9 @@ class Min {
         if (data.theme) {
             configs.push(http('/config/themes/' + (data.theme.name || 'material') + '.json').setName('theme'));
         }
+        if (data.animations) {
+            configs.push(http('/config/' + data.animations).setName('animation'));
+        }
 
         // Once all the configurations are loaded...
         Http.when(configs).done(items => {
@@ -48,6 +51,8 @@ class Min {
                     Routes['init'](item.content);
                 } else if (name == 'theme') {
                     Themes['init'](item.content);
+                } else if (name == 'animation') {
+                    Animation['init'](item.content);
                 }
             });
 
@@ -57,5 +62,17 @@ class Min {
     }
 
 }
+
+let observer = new MutationObserver(function (mutations, observer) {
+    window.dispatchEvent(new CustomEvent('onDomChange', { detail: mutations }));
+    // console.log(mutations)
+});
+
+observer.observe(document, {
+    subtree: true,
+    attributes: false,
+    characterData: false,
+    childList: true
+});
 
 new Min().init();

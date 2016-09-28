@@ -43,9 +43,9 @@
                         "$ref": "#/definitions/target",
                         "description": "The optional target(s) to apply the animation to"
                     },
-                    "speed": {
+                    "duration": {
                         "type": "string",
-                        "description": "The speed of the animation."
+                        "description": "The duration of the animation."
                     },
                     "action": {
                         "type": "object",

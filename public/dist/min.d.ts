@@ -73,7 +73,13 @@ declare class RoutePath {
 declare class Themes {
     static init(theme: any): void;
 }
+declare class Animation {
+    private static config;
+    private static init(content);
+    private static addListeners();
+}
 declare class Min {
     init(): void;
     private loadConfigs(response);
 }
+declare let observer: MutationObserver;

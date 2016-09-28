@@ -279,6 +279,48 @@ class Themes {
     static init(theme) {
     }
 }
+class Animation {
+    static init(content) {
+        Animation.config = content;
+        window.addEventListener('onDomChange', (event) => {
+            let mutations = event.detail;
+            mutations.forEach(mutation => {
+                console.log(mutation.addedNodes);
+                if (mutation.addedNodes.length > 0) {
+                    this.addListeners();
+                }
+            });
+        });
+    }
+    static addListeners() {
+        Animation.config.animations.forEach(animation => {
+            let targetArray = [];
+            if (typeof animation.target == 'string') {
+                targetArray.push(animation.target);
+            }
+            let targets = document.querySelectorAll(targetArray.join(','));
+            let applies;
+            if (animation.apply) {
+                let applyArray = [];
+                if (typeof animation.apply == 'string') {
+                    applyArray.push(animation.apply);
+                }
+                applies = document.querySelectorAll(applyArray.join(','));
+            }
+            let duration = animation.duration || '1s';
+            for (let i = 0; i < targets.length; i++) {
+                let target = targets[i];
+                if (typeof animation.trigger == 'string') {
+                    target.addEventListener(animation.trigger, function (event) {
+                        if (!animation.apply) {
+                            target.style.transform = `translateX(${animation.action.moveTo.x}) ${duration}, translateY(${animation.action.moveTo.y}) ${duration}`;
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
 class Min {
     init() {
         let main = http('/config/minjs.json').error(response => {
@@ -297,6 +339,9 @@ class Min {
         if (data.theme) {
             configs.push(http('/config/themes/' + (data.theme.name || 'material') + '.json').setName('theme'));
         }
+        if (data.animations) {
+            configs.push(http('/config/' + data.animations).setName('animation'));
+        }
         Http.when(configs).done(items => {
             items.forEach(item => {
                 let name = item.name;
@@ -306,9 +351,21 @@ class Min {
                 else if (name == 'theme') {
                     Themes['init'](item.content);
                 }
+                else if (name == 'animation') {
+                    Animation['init'](item.content);
+                }
             });
             Routes.loadRoute();
         });
     }
 }
+let observer = new MutationObserver(function (mutations, observer) {
+    window.dispatchEvent(new CustomEvent('onDomChange', { detail: mutations }));
+});
+observer.observe(document, {
+    subtree: true,
+    attributes: false,
+    characterData: false,
+    childList: true
+});
 new Min().init();
